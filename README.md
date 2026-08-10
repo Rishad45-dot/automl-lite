@@ -2,7 +2,12 @@
 ## Live Demo
 **Static Frontend (GitHub Pages Deployment):**
 🔗 [https://Rishad45-dot.github.io/automl-lite/](https://Rishad45-dot.github.io/automl-lite/)
+<<<<<<< HEAD
 **Application Backend:** Executes entirely on local infrastructure — full installation and runtime instructions documented below.
+=======
+
+**Backend:** Runs locally – see [Installation & Setup](#installation--setup) for detailed instructions.
+>>>>>>> 6a6eda38ee27f5238359f10a9d522343c46476ad
 
 ---
 [![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=flat&logo=python&logoColor=white)](https://www.python.org/)
@@ -32,7 +37,20 @@
 ## 📖 Executive Overview
 **AutoML-Lite** is a privacy-preserving, locally executed automated machine learning web application engineered for data practitioners, analysts, and entry-level ML engineers. The platform eliminates reliance on third-party cloud compute and data ingestion pipelines, enabling end-users to conduct end-to-end supervised machine learning workflows entirely on their local workstation.
 
+<<<<<<< HEAD
 Key supported workflows include secure CSV dataset ingestion, automated schema inference, supervised task classification detection, standardized model training, quantitative performance benchmarking, and interpretability visualisation generation. The platform adheres to formal Responsible AI design tenets: Privacy-by-Design, algorithmic transparency, model explainability, and human-in-the-loop oversight for all modelling stages.
+=======
+## 📖 Overview
+
+**AutoML-Lite** is a **locally-runnable, privacy-first** machine learning web application that enables users to:
+
+- Upload CSV datasets **without sending data to the cloud**.
+- Automatically detect headers, column types, and task types.
+- Train and evaluate machine learning models through a clean, intuitive interface.
+- Generate descriptive statistics, evaluation metrics, and visualizations.
+
+Built with **Responsible AI** principles: **Privacy by Design**, **Transparency**, **Explainability**, and **Human Oversight** in mind.
+>>>>>>> 6a6eda38ee27f5238359f10a9d522343c46476ad
 
 ---
 ## 📋 Functional & System Requirements
@@ -107,6 +125,7 @@ This section formalises a reproducible, step-by-step environment setup workflow 
 ## 1. Pre-Flight Prerequisite Validation
 Complete the below environment audit before repository deployment to eliminate runtime dependency failures. All listed tooling is mandatory for full platform functionality.
 
+<<<<<<< HEAD
 | Prerequisite Component | Formal Description | Validation Command | Criticality Rationale |
 | :--- | :--- | :--- | :--- |
 | Python 3.10 or Newer Interpreter | Core runtime environment powering the FastAPI backend, data parsing, and machine learning computation layers. | Terminal / Command Prompt:<br>`python --version`<br>macOS/Linux fallback: `python3 --version` | The backend and ML core are natively implemented in Python; incompatible minor/major versions introduce breaking API and library compatibility errors. |
@@ -122,12 +141,33 @@ Two officially supported deployment pathways are provided for source code retrie
 2. Navigate to a target working directory where the project source will be stored locally (example directory command provided below).
 3. Execute the repository clone command to pull the complete source tree from GitHub.
 4. Enter the project root directory post-clone completion.
+=======
+This guide provides step-by-step instructions to get AutoML-Lite running on your local machine.
+
+### Prerequisites
+
+Ensure your system meets the following requirements before proceeding.
+
+| Requirement | Description | How to Verify | Why It's Needed |
+| :--- | :--- | :--- | :--- |
+| **Python 3.10 or Higher** | The backend is built with Python. | Run `python --version` or `python3 --version` in your terminal. | The core server and ML logic depend on Python. |
+| **pip** | The Python package installer. | Run `pip --version` or `pip3 --version`. | Essential for installing project dependencies. |
+| **Modern Web Browser** | Chrome, Edge, Firefox, or Safari (latest version). | N/A | To access and interact with the web interface. |
+| **Git (Optional)** | For cloning the repository. | Run `git --version`. | Required if you choose to clone the project via Git. You can also download the ZIP file directly. |
+
+### Step 1: Obtain the Source Code
+
+**Option A: Clone with Git (Recommended)**
+
+Open your terminal and run:
+>>>>>>> 6a6eda38ee27f5238359f10a9d522343c46476ad
 
 ```bash
 # Navigate to your preferred project storage directory (example for cross-platform consistency)
 cd ~/Projects
 # Clone the public source repository
 git clone https://github.com/Rishad45-dot/automl-lite.git
+<<<<<<< HEAD
 # Enter the project root working directory
 cd automl-lite
 
@@ -425,3 +465,6 @@ Recognition for the maintainers and contributors of all open-source libraries po
 - Web standards communities for HTML/CSS/ES6 frontend tooling
 ```
 
+=======
+cd automl-lite
+>>>>>>> 6a6eda38ee27f5238359f10a9d522343c46476ad
