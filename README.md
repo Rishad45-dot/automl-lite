@@ -1,4 +1,8 @@
 # 🤖 AutoML-Lite
+## Live Demo
+
+The frontend is deployed at:  
+**https://Rishad45-dot.github.io/automl-lite/**
 
 **A locally runnable HTML-based application that allows users to upload CSV files, preview data, and run basic machine learning models using a Python backend.**
 
