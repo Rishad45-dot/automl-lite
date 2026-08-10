@@ -1,15 +1,15 @@
-# 🤖 AutoML-Lite
+# AutoML-Lite
+
+**A privacy-first, locally executed automated machine learning platform for tabular data.**
+
+> AutoML-Lite is a full-stack web application that enables non-expert users to upload CSV datasets and obtain trained, evaluated machine learning models — with all data processing confined to the local machine. No data ever leaves the user's environment.
+
 ## Live Demo
-**Static Frontend (GitHub Pages Deployment):**
-🔗 [https://Rishad45-dot.github.io/automl-lite/](https://Rishad45-dot.github.io/automl-lite/)
-<<<<<<< HEAD
-**Application Backend:** Executes entirely on local infrastructure — full installation and runtime instructions documented below.
-=======
 
-**Backend:** Runs locally – see [Installation & Setup](#installation--setup) for detailed instructions.
->>>>>>> 6a6eda38ee27f5238359f10a9d522343c46476ad
+**Frontend (hosted on GitHub Pages):** [https://Rishad45-dot.github.io/automl-lite/](https://Rishad45-dot.github.io/automl-lite/)
 
----
+**Backend:** self-hosted — runs locally on the user's machine. See [Installation & Setup](#installation--setup).
+
 [![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=flat&logo=python&logoColor=white)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.115+-009688?style=flat&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
 [![Scikit-learn](https://img.shields.io/badge/Scikit--learn-1.5+-F7931E?style=flat&logo=scikit-learn&logoColor=white)](https://scikit-learn.org/)
@@ -19,452 +19,297 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ---
-## 📋 Table of Contents
-- [Executive Overview](#executive-overview)
-- [Functional & System Requirements](#functional--system-requirements)
-- [Core Platform Capabilities](#core-platform-capabilities)
-- [Full Technology Stack](#full-technology-stack)
-- [Installation & Environment Provisioning](#installation--environment-provisioning)
-- [End-to-End User Workflow Guide](#end-to-end-user-workflow-guide)
-- [Standardized Project Directory Structure](#standardized-project-directory-structure)
-- [Responsible AI Governance Framework](#responsible-ai-governance-framework)
-- [System Limitations & Product Roadmap](#system-limitations--product-roadmap)
-- [Project Deliverable Inventory](#project-deliverable-inventory)
-- [Software License](#software-license)
-- [Attributions & Acknowledgements](#attributions--acknowledgements)
+
+## Table of Contents
+
+1. [Overview](#overview)
+2. [Architecture](#architecture)
+3. [Functional Requirements](#functional-requirements)
+4. [Key Features](#key-features)
+5. [Machine Learning Pipeline](#machine-learning-pipeline)
+6. [Tech Stack](#tech-stack)
+7. [API Reference](#api-reference)
+8. [Installation & Setup](#installation--setup)
+9. [Usage Guide](#usage-guide)
+10. [Project Structure](#project-structure)
+11. [Responsible AI Alignment](#responsible-ai-alignment)
+12. [Limitations & Future Work](#limitations--future-work)
+13. [Deliverables](#deliverables)
+14. [License](#license)
+15. [Acknowledgements](#acknowledgements)
 
 ---
-## 📖 Executive Overview
-**AutoML-Lite** is a privacy-preserving, locally executed automated machine learning web application engineered for data practitioners, analysts, and entry-level ML engineers. The platform eliminates reliance on third-party cloud compute and data ingestion pipelines, enabling end-users to conduct end-to-end supervised machine learning workflows entirely on their local workstation.
 
-<<<<<<< HEAD
-Key supported workflows include secure CSV dataset ingestion, automated schema inference, supervised task classification detection, standardized model training, quantitative performance benchmarking, and interpretability visualisation generation. The platform adheres to formal Responsible AI design tenets: Privacy-by-Design, algorithmic transparency, model explainability, and human-in-the-loop oversight for all modelling stages.
-=======
-## 📖 Overview
+## Overview
 
-**AutoML-Lite** is a **locally-runnable, privacy-first** machine learning web application that enables users to:
+AutoML-Lite is a **locally-runnable, privacy-first** machine learning web application designed for users who need accessible model training without exposing sensitive data to cloud services. The platform provides an end-to-end workflow: CSV ingestion, automatic schema inference, intelligent task detection, configurable model training, quantitative evaluation, and explainability analysis — all exposed through a clean, responsive single-page interface.
 
-- Upload CSV datasets **without sending data to the cloud**.
-- Automatically detect headers, column types, and task types.
-- Train and evaluate machine learning models through a clean, intuitive interface.
-- Generate descriptive statistics, evaluation metrics, and visualizations.
+The system is engineered around four core **Responsible AI** principles:
 
-Built with **Responsible AI** principles: **Privacy by Design**, **Transparency**, **Explainability**, and **Human Oversight** in mind.
->>>>>>> 6a6eda38ee27f5238359f10a9d522343c46476ad
-
----
-## 📋 Functional & System Requirements
-### 1. Dataset Ingestion & Interactive Preview Module
-| Functional Requirement | Implementation Status & Technical Details |
+| Principle | Implementation |
 | :--- | :--- |
-| Standardised File Upload Interface | ✅ Implements dual-input upload paradigm: drag-and-drop zone + click-triggered file selector with responsive, accessible UI components for CSV ingestion. |
-| Strict File Type Validation & Error Handling | ✅ Input sanitisation pipeline restricts uploads to `.csv` MIME types only; contextual, human-readable error notifications surface invalid file formats, corrupted datasets, and empty payloads. |
-| Real-Time Dataset Preview Rendering | ✅ Post-ingestion low-latency rendering of the first five dataset records to enable rapid schema validation prior to modelling configuration. |
-
-### 2. Automated ML Pipeline Configuration Engine
-| Functional Requirement | Implementation Status & Technical Details |
-| :--- | :--- |
-| Automated Header Row Inference | ✅ Heuristic-based CSV header detection algorithm with user-accessible toggle control to manually override auto-detection results for malformed or headerless datasets. |
-| Target Variable Assignment Control | ✅ Default target column mapping set to the final dataset column; dropdown selection component enables explicit manual target feature reassignment. |
-| Supervised Task Auto-Classification | ✅ Statistical type inference pipeline auto-detects regression (continuous target) vs. classification (categorical/discrete target) tasks; user override toggle permits manual task reclassification for edge-case datasets. |
-
-### 3. Descriptive Analytics & Model Training Subsystem
-| Functional Requirement | Implementation Status & Technical Details |
-| :--- | :--- |
-| Univariate Descriptive Statistical Reporting | ✅ Dedicated analytics panel computes and displays aggregate statistics: central tendency (mean), dispersion (standard deviation), and quantile metrics (min, 25th, median/50th, 75th, max percentiles) for the designated target feature. |
-| Modular Regression Model Library | ✅ Pre-integrated baseline regression estimators: Linear Regression, Random Forest Regressor, Support Vector Regressor (SVR). |
-| Modular Classification Model Library | ✅ Pre-integrated baseline classification estimators: Logistic Regression, Random Forest Classifier, Support Vector Machine (SVM). |
-| Reproducible Train-Test Dataset Partitioning | ✅ Standardised 80/20 train/test split stratification with fixed static random seed (`random_state=42`) to guarantee fully reproducible training results across execution sessions. |
-| Standardised Quantitative Evaluation Metrics | ✅ Regression suite: MSE, RMSE, R² Score; Classification suite: Global Accuracy, Class-wise Precision, Recall, F1-Score. All metrics paired with plain-language interpretive annotations. |
-| Dynamic Model Diagnostics Visualisations | ✅ Classification output: Normalised confusion matrix heatmap labelled with target variable metadata; Regression output: Actual vs. Predicted value scatter plot for residual analysis. |
+| **Privacy by Design** | All data processing occurs in-memory on the local backend; no external storage, telemetry, or cloud transmission. |
+| **Transparency** | Every decision the system makes — header detection, task inference, feature encoding — is exposed to the user with a manual override. |
+| **Explainability** | Feature importance is computed via a hybrid Mutual Information + Random Forest scoring scheme, aggregated back to human-readable original column names. |
+| **Human Oversight** | Users retain control at every stage: header toggle, target selection, task override, and model selection. |
 
 ---
-## ✨ Core Platform Capabilities
-### 🔐 Enterprise-Grade Data Privacy & Secure Ingestion
-- **Zero Cloud Data Egress Architecture**: All dataset parsing, feature engineering, model training, and visualisation rendering executes locally on the end-user’s hardware. No raw or derived data payloads are transmitted to external cloud APIs or remote servers.
-- **Configurable CSV Header Inference**: Automated schema detection with manual override controls for non-standard CSV formatting.
-- **Low-Latency Dataset Sampling Preview**: Instant rendering of top-five dataset records immediately post-upload for rapid data quality validation.
-- **Robust Input Sanitisation Layer**: Strict file extension and MIME-type filtering with granular error messaging for invalid, corrupted, or unsupported input payloads.
 
-### 🧠 Automated ML Pipeline Orchestration
-- **Statistical Task Inference Engine**: Unsupervised type analysis to auto-distinguish regression and classification modelling tasks without manual user input.
-- **Context-Aware Model Selector UI**: Model library dynamically filters to display only estimators compatible with the detected supervised learning task; all baseline algorithms pre-configured with sensible default hyperparameters for rapid prototyping.
-- **Flexible Target Variable Selection**: Default mapping to last dataset column with interactive dropdown for custom target feature assignment.
+## Architecture
 
-### 📊 Standardised Model Training & Performance Analytics
-- **Deterministic Train/Test Partitioning**: Fixed random state ensures identical dataset splits across repeated training runs for reproducible benchmarking.
-- **Comprehensive Univariate Target Statistics Panel**: Complete quantile and distribution metrics to enable preliminary target variable quality assessment prior to training.
-- **Industry-Standard Evaluation Metric Suites**: Task-aligned quantitative scoring with embedded plain-text definitions to reduce interpretive friction for non-specialist users.
-- **Contextualised Diagnostic Visualisations**: Labelled, publication-ready plots for residual and classification error analysis, dynamically titled with active target feature metadata.
-- **Dataset Partition Metadata Dashboard**: Real-time display of total record count, training sample volume, test sample volume, and proportional split percentages for audit transparency.
+AutoML-Lite follows a decoupled client–server architecture. The frontend is a static, dependency-free single-page application served via GitHub Pages; the backend is an asynchronous Python API serving JSON over HTTP.
 
-### 🔎 Model Explainability & Algorithmic Governance
-- **Multi-Source Feature Importance Ranking**: Hybrid importance calculation combining mutual information statistical scoring and Random Forest feature weight attribution, aggregated and grouped by original input column identifiers for intuitive interpretability.
-- **Pre-Execution Data Consistency Guardrails**: Contextual warning notifications alert users to configuration mismatches (e.g., continuous target variable assigned to classification task) to prevent invalid model training workflows.
-- **Human-Centric Metric Labelling**: Every quantitative metric includes plain-language guidance (e.g., "MSE: Lower numerical values indicate superior predictive performance") to standardise result interpretation across skill levels.
+```
+┌──────────────────────────────┐        ┌──────────────────────────────────────────┐
+│  Frontend (GitHub Pages)     │        │  Backend (FastAPI / Uvicorn)             │
+│                              │  HTTP  │                                          │
+│  • CSV upload (fetch API)    │ ─────▶ │  /upload      schema inference           │
+│  • Configuration controls    │ ◀───── │  /stats       descriptive statistics    │
+│  • Results rendering         │  POST  │  /train       model training & metrics  │
+│  • Plot display (base64 PNG) │ ◀───── │  /feature_importance  explainability   │
+└──────────────────────────────┘        │                                          │
+                                        │  In-memory DataFrame cache (session-id)    │
+                                        │  Scikit-learn estimators                 │
+                                        └──────────────────────────────────────────┘
+                                            Runs entirely on the user's machine
+```
 
-### 🎨 Production-Grade User Experience & Interface Design
-- **Mobile-First Responsive Web UI**: Compact, modular component layout optimised for desktop, laptop, and tablet viewing resolutions.
-- **Automated Viewport Scrolling Logic**: Post-computation auto-scroll functionality navigates the UI to newly generated statistical or training result panels to minimise manual user navigation overhead.
-- **Modular Training Control Card**: Dedicated, isolated UI component housing training configuration parameters and a single-click execution trigger for streamlined model training initiation.
+Session state is managed through a UUID-keyed in-memory cache on the backend, avoiding any persistent storage. Large outputs (confusion matrices, regression scatter plots) are rendered server-side with Matplotlib and transmitted as base64-encoded PNG payloads, keeping the frontend free of plotting dependencies.
 
 ---
-## 🛠 Full Technology Stack
-| Architectural Layer | Production Technology Suite |
+
+## Functional Requirements
+
+### 1. Data Handling & Preview
+
+| Requirement | Implementation |
 | :--- | :--- |
-| Application Backend API | Python 3.10+, FastAPI 0.115+, Uvicorn ASGI Production Server |
-| Data Processing & Machine Learning Core | Pandas, NumPy, Scikit-learn v1.5+ |
-| Static Visualisation Rendering | Matplotlib (server-side plot generation, base64 payload delivery to frontend) |
-| Client-Side Frontend Interface | HTML5 Semantic Markup, CSS3 Custom Properties, Vanilla ES6+ JavaScript (zero external frontend framework dependencies) |
-| Deployment Targets | Static frontend asset hosting via GitHub Pages; backend restricted to local workstation execution only |
+| **Upload Interface** | Drag-and-drop and click-to-upload with an accessible fallback; immediate client-side feedback. |
+| **Validation** | MIME and extension guard — only `.csv` files are accepted, with descriptive error messages for rejected uploads. |
+| **Data Preview** | First five rows rendered immediately upon successful upload for rapid sanity checking. |
+
+### 2. Intelligent Configuration
+
+| Requirement | Implementation |
+| :--- | :--- |
+| **Header Detection** | Heuristic inference: a header is detected when the first row is fully string-typed and the second row contains at least one numeric cell. Fully numeric first rows are treated as headerless. A manual toggle lets users override the inference. |
+| **Target Selection** | Defaults to the last column; a dropdown allows explicit manual selection. |
+| **Task Identification** | Automatic task inference from the target column's dtype: boolean, string, categorical, or numeric columns with ≤10 unique values are classified as **classification**; all other numeric columns are treated as **regression**. Users may override the detected task. |
+
+### 3. Analytics & Model Training
+
+| Requirement | Implementation |
+| :--- | :--- |
+| **Descriptive Statistics** | Mean, standard deviation, and percentiles (min, 25%, 50%, 75%, max) computed on the target column, with an explicit count of valid samples. |
+| **Model Selection (Regression)** | Linear Regression, Random Forest Regressor, Decision Tree Regressor, SVR. |
+| **Model Selection (Classification)** | Logistic Regression, Random Forest Classifier, Decision Tree Classifier, SVM. |
+| **Model–Task Guard** | Strict mapping enforcement: classification-only models are rejected for regression tasks and vice versa, with actionable error messages. |
+| **Training Execution** | Deterministic 80/20 train–test split (`random_state=42`) for reproducibility. |
+| **Evaluation Metrics** | MSE, RMSE, R² (regression); accuracy, precision, recall, F1 with weighted averaging (classification). |
+| **Visualizations** | Confusion matrix (classification); actual-vs-predicted scatter with reference diagonal (regression); target column name embedded in plot labels. |
+| **Split Reporting** | Total, training, and test sample counts with ratios displayed alongside metrics. |
 
 ---
-# 🚀 Installation & Environment Provisioning
-This section formalises a reproducible, step-by-step environment setup workflow for Windows, macOS, and Linux operating systems, including pre-flight validation, repository acquisition, dependency provisioning, and backend service initialisation. All commands follow cross-platform best practices with platform-specific callouts where applicable.
 
-## 1. Pre-Flight Prerequisite Validation
-Complete the below environment audit before repository deployment to eliminate runtime dependency failures. All listed tooling is mandatory for full platform functionality.
+## Key Features
 
-<<<<<<< HEAD
-| Prerequisite Component | Formal Description | Validation Command | Criticality Rationale |
-| :--- | :--- | :--- | :--- |
-| Python 3.10 or Newer Interpreter | Core runtime environment powering the FastAPI backend, data parsing, and machine learning computation layers. | Terminal / Command Prompt:<br>`python --version`<br>macOS/Linux fallback: `python3 --version` | The backend and ML core are natively implemented in Python; incompatible minor/major versions introduce breaking API and library compatibility errors. |
-| Python Package Installer (pip) | Official Python package management utility bundled with standard Python 3.10+ distributions, used to resolve and install all third-party dependency libraries. | Terminal / Command Prompt:<br>`pip --version`<br>macOS/Linux fallback: `pip3 --version` | Required to provision the complete ML and API dependency stack; no alternative package managers are officially supported for this project. |
-| Standards-Compliant Modern Web Browser | Rendering engine for the static frontend web interface; supports ES6+ JavaScript, modern CSS, and base64 image payload ingestion for visualisation rendering. | N/A (Manual version check via browser "About" menu) | Legacy browsers lack required JavaScript and DOM APIs to execute the full frontend interactive workflow. Recommended releases: Google Chrome, Microsoft Edge, Mozilla Firefox, Apple Safari (latest stable channel builds). |
-| Git Version Control System (Optional) | Distributed source control client to clone the remote GitHub repository source code. | Terminal / Command Prompt:<br>`git --version` | Only required for repository cloning workflows. If Git is unavailable, users may download the project source as a compressed ZIP archive directly from the repository GitHub page. |
+### Privacy & Data Handling
 
-## 2. Repository Source Code Acquisition
-Two officially supported deployment pathways are provided for source code retrieval; the Git clone method is recommended for future project update compatibility.
+Data is processed **100% locally** — nothing is transmitted beyond the user's own machine. Schema inference auto-detects CSV headers with a manual override, and the first five rows are previewed immediately after upload. File validation enforces the `.csv` contract with clear user-facing error messages.
 
-### Option A: Git Repository Clone (Recommended)
-1. Launch your native system terminal (Terminal on macOS/Linux, PowerShell / Command Prompt on Windows).
-2. Navigate to a target working directory where the project source will be stored locally (example directory command provided below).
-3. Execute the repository clone command to pull the complete source tree from GitHub.
-4. Enter the project root directory post-clone completion.
-=======
-This guide provides step-by-step instructions to get AutoML-Lite running on your local machine.
+### Intelligent Configuration
+
+Task detection reads the target column's dtype and cardinality to select between classification and regression, and the model picker updates dynamically to present only task-compatible estimators. An explicit `TASK_MODEL_MAP` enforces this compatibility at the API layer, preventing meaningless model/task combinations before training begins.
+
+### Model Training & Analytics
+
+Training is executed with a fixed random seed for reproducibility, and results are presented as both quantitative metrics and rendered visualizations. The platform additionally emits **system warnings** captured during fit/predict (e.g., non-convergence of solvers), and heuristically warns when a classification target carries an excessively high unique-value ratio — a strong signal that the problem is better posed as regression.
+
+### Explainability & Fairness
+
+Feature importance is computed through a **hybrid scoring pipeline**: per-feature Mutual Information (MI regression/MI classification, `random_state=42`) and Random Forest Gini importances (50-estimator probe model) are normalized to a 0–100 scale, averaged, and — critically — **grouped back to the user's original column names** so that one-hot-expanded dummies do not fragment the explanation. Features scoring below the 15-point threshold receive actionable guidance (e.g., "Likely a unique identifier (low predictive power)").
+
+### User Experience
+
+The interface uses a compact, responsive layout with automatic scrolling to newly computed results, a dedicated training card that restates the current training objective before one-click execution, and human-readable metric annotations (e.g., "MSE — lower is better").
+
+---
+
+## Machine Learning Pipeline
+
+The backend implements a robust preprocessing pipeline before any estimator is fitted:
+
+1. **Target validation** — the target column is validated for non-empty content; rows with missing targets are excluded.
+2. **Feature isolation** — the target column is separated; an empty feature set raises a clear error.
+3. **Type normalization** — `datetime64` columns are stringified to preserve temporal information through encoding.
+4. **One-hot encoding** — all non-numeric columns are expanded via `pd.get_dummies` (no dropped baseline, preserving interpretability).
+5. **Numeric verification** — a final pass confirms every feature column is numeric; otherwise a pinpointed error names the offending column and its sample value.
+
+Evaluation proceeds on the held-out 20% split. Classification metrics use **weighted averaging** (`zero_division=0`) to remain well-defined under class imbalance; regression metrics include RMSE alongside MSE for scale-interpretable error reporting.
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+| :--- | :--- |
+| **Backend** | Python 3.10+, FastAPI, Uvicorn (ASGI) |
+| **ML & Data** | Pandas, NumPy, Scikit-learn |
+| **Visualization** | Matplotlib (server-side, Agg backend) |
+| **Frontend** | HTML5, CSS3, Vanilla JavaScript (ES6+) — zero build tooling |
+| **Hosting** | GitHub Pages (frontend, static); local host (backend) |
+| **API Contract** | REST over JSON; binary plots as base64-encoded PNG |
+
+---
+
+## API Reference
+
+The backend exposes four endpoints. All JSON bodies use the shared `TrainRequest` schema.
+
+```
+TrainRequest {
+  session_id:      string   // UUID returned by /upload
+  target_column:   string   // column name to predict
+  task_type:       "classification" | "regression"
+  model_name:      string   // see TASK_MODEL_MAP
+}
+```
+
+| Endpoint | Method | Description |
+| :--- | :--- | :--- |
+| `/` | `GET` | Health check — `{"message": "Backend is running"}`. |
+| `/upload` | `POST` | Accepts a multipart CSV (`file`, optional `has_header` boolean). Returns `session_id`, `columns`, a five-row `preview`, `has_header_guess`, `detected_task`, and the suggested `target_column`. |
+| `/stats` | `GET` | Query params `session_id` and optional `target_column`. Returns descriptive statistics for a numeric target. |
+| `/train` | `POST` | `TrainRequest`. Trains the requested model and returns `metrics`, `plot` (base64 PNG), `warnings[]`, and `split_info`. |
+| `/feature_importance` | `POST` | `TrainRequest`. Returns per-column MI, RF, and combined importance scores with recommendations. |
+
+---
+
+## Installation & Setup
 
 ### Prerequisites
 
-Ensure your system meets the following requirements before proceeding.
-
-| Requirement | Description | How to Verify | Why It's Needed |
+| Requirement | Description | How to Check | Why You Need It |
 | :--- | :--- | :--- | :--- |
-| **Python 3.10 or Higher** | The backend is built with Python. | Run `python --version` or `python3 --version` in your terminal. | The core server and ML logic depend on Python. |
-| **pip** | The Python package installer. | Run `pip --version` or `pip3 --version`. | Essential for installing project dependencies. |
-| **Modern Web Browser** | Chrome, Edge, Firefox, or Safari (latest version). | N/A | To access and interact with the web interface. |
-| **Git (Optional)** | For cloning the repository. | Run `git --version`. | Required if you choose to clone the project via Git. You can also download the ZIP file directly. |
+| **Python 3.10+** | Runtime for the backend. | `python --version` or `python3 --version` | The backend is written in Python; without it, nothing works. |
+| **pip** | Python package manager (ships with Python). | `pip --version` | Installs all required Python packages. |
+| **Modern Web Browser** | Chrome, Edge, Firefox, or Safari (latest recommended). | — | Renders and interacts with the frontend interface. |
+| **Git** (optional) | Version control to clone the repository. | `git --version` | Required only for cloning; a ZIP download works equally well. |
 
-### Step 1: Obtain the Source Code
+### 1. Clone or Download the Repository
 
 **Option A: Clone with Git (Recommended)**
 
-Open your terminal and run:
->>>>>>> 6a6eda38ee27f5238359f10a9d522343c46476ad
-
 ```bash
-# Navigate to your preferred project storage directory (example for cross-platform consistency)
-cd ~/Projects
-# Clone the public source repository
 git clone https://github.com/Rishad45-dot/automl-lite.git
-<<<<<<< HEAD
-# Enter the project root working directory
-cd automl-lite
-
-# AutoML-Lite README.md
-Copy all content below, create a new file named `README.md` on your local machine, paste everything and save it directly for download/use.
-```markdown
-# 🤖 AutoML-Lite
-## Live Demo
-**Static Frontend (GitHub Pages Deployment):**
-🔗 [https://Rishad45-dot.github.io/automl-lite/](https://Rishad45-dot.github.io/automl-lite/)
-**Application Backend:** Executes entirely on local infrastructure — full installation and runtime instructions documented below.
-
----
-[![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=flat&logo=python&logoColor=white)](https://www.python.org/)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.115+-009688?style=flat&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
-[![Scikit-learn](https://img.shields.io/badge/Scikit--learn-1.5+-F7931E?style=flat&logo=scikit-learn&logoColor=white)](https://scikit-learn.org/)
-[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
-[![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
-[![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=flat&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
----
-## 📋 Table of Contents
-- [Executive Overview](#executive-overview)
-- [Functional & System Requirements](#functional--system-requirements)
-- [Core Platform Capabilities](#core-platform-capabilities)
-- [Full Technology Stack](#full-technology-stack)
-- [Installation & Environment Provisioning](#installation--environment-provisioning)
-- [End-to-End User Workflow Guide](#end-to-end-user-workflow-guide)
-- [Standardized Project Directory Structure](#standardized-project-directory-structure)
-- [Responsible AI Governance Framework](#responsible-ai-governance-framework)
-- [System Limitations & Product Roadmap](#system-limitations--product-roadmap)
-- [Project Deliverable Inventory](#project-deliverable-inventory)
-- [Software License](#software-license)
-- [Attributions & Acknowledgements](#attributions--acknowledgements)
-
----
-## 📖 Executive Overview
-**AutoML-Lite** is a privacy-preserving, locally executed automated machine learning web application engineered for data practitioners, analysts, and entry-level ML engineers. The platform eliminates reliance on third-party cloud compute and data ingestion pipelines, enabling end-users to conduct end-to-end supervised machine learning workflows entirely on their local workstation.
-
-Key supported workflows include secure CSV dataset ingestion, automated schema inference, supervised task classification detection, standardized model training, quantitative performance benchmarking, and interpretability visualisation generation. The platform adheres to formal Responsible AI design tenets: Privacy-by-Design, algorithmic transparency, model explainability, and human-in-the-loop oversight for all modelling stages.
-
----
-## 📋 Functional & System Requirements
-### 1. Dataset Ingestion & Interactive Preview Module
-| Functional Requirement | Implementation Status & Technical Details |
-| :--- | :--- |
-| Standardised File Upload Interface | ✅ Implements dual-input upload paradigm: drag-and-drop zone + click-triggered file selector with responsive, accessible UI components for CSV ingestion. |
-| Strict File Type Validation & Error Handling | ✅ Input sanitisation pipeline restricts uploads to `.csv` MIME types only; contextual, human-readable error notifications surface invalid file formats, corrupted datasets, and empty payloads. |
-| Real-Time Dataset Preview Rendering | ✅ Post-ingestion low-latency rendering of the first five dataset records to enable rapid schema validation prior to modelling configuration. |
-
-### 2. Automated ML Pipeline Configuration Engine
-| Functional Requirement | Implementation Status & Technical Details |
-| :--- | :--- |
-| Automated Header Row Inference | ✅ Heuristic-based CSV header detection algorithm with user-accessible toggle control to manually override auto-detection results for malformed or headerless datasets. |
-| Target Variable Assignment Control | ✅ Default target column mapping set to the final dataset column; dropdown selection component enables explicit manual target feature reassignment. |
-| Supervised Task Auto-Classification | ✅ Statistical type inference pipeline auto-detects regression (continuous target) vs. classification (categorical/discrete target) tasks; user override toggle permits manual task reclassification for edge-case datasets. |
-
-### 3. Descriptive Analytics & Model Training Subsystem
-| Functional Requirement | Implementation Status & Technical Details |
-| :--- | :--- |
-| Univariate Descriptive Statistical Reporting | ✅ Dedicated analytics panel computes and displays aggregate statistics: central tendency (mean), dispersion (standard deviation), and quantile metrics (min, 25th, median/50th, 75th, max percentiles) for the designated target feature. |
-| Modular Regression Model Library | ✅ Pre-integrated baseline regression estimators: Linear Regression, Random Forest Regressor, Support Vector Regressor (SVR). |
-| Modular Classification Model Library | ✅ Pre-integrated baseline classification estimators: Logistic Regression, Random Forest Classifier, Support Vector Machine (SVM). |
-| Reproducible Train-Test Dataset Partitioning | ✅ Standardised 80/20 train/test split stratification with fixed static random seed (`random_state=42`) to guarantee fully reproducible training results across execution sessions. |
-| Standardised Quantitative Evaluation Metrics | ✅ Regression suite: MSE, RMSE, R² Score; Classification suite: Global Accuracy, Class-wise Precision, Recall, F1-Score. All metrics paired with plain-language interpretive annotations. |
-| Dynamic Model Diagnostics Visualisations | ✅ Classification output: Normalised confusion matrix heatmap labelled with target variable metadata; Regression output: Actual vs. Predicted value scatter plot for residual analysis. |
-
----
-## ✨ Core Platform Capabilities
-### 🔐 Enterprise-Grade Data Privacy & Secure Ingestion
-- **Zero Cloud Data Egress Architecture**: All dataset parsing, feature engineering, model training, and visualisation rendering executes locally on the end-user’s hardware. No raw or derived data payloads are transmitted to external cloud APIs or remote servers.
-- **Configurable CSV Header Inference**: Automated schema detection with manual override controls for non-standard CSV formatting.
-- **Low-Latency Dataset Sampling Preview**: Instant rendering of top-five dataset records immediately post-upload for rapid data quality validation.
-- **Robust Input Sanitisation Layer**: Strict file extension and MIME-type filtering with granular error messaging for invalid, corrupted, or unsupported input payloads.
-
-### 🧠 Automated ML Pipeline Orchestration
-- **Statistical Task Inference Engine**: Unsupervised type analysis to auto-distinguish regression and classification modelling tasks without manual user input.
-- **Context-Aware Model Selector UI**: Model library dynamically filters to display only estimators compatible with the detected supervised learning task; all baseline algorithms pre-configured with sensible default hyperparameters for rapid prototyping.
-- **Flexible Target Variable Selection**: Default mapping to last dataset column with interactive dropdown for custom target feature assignment.
-
-### 📊 Standardised Model Training & Performance Analytics
-- **Deterministic Train/Test Partitioning**: Fixed random state ensures identical dataset splits across repeated training runs for reproducible benchmarking.
-- **Comprehensive Univariate Target Statistics Panel**: Complete quantile and distribution metrics to enable preliminary target variable quality assessment prior to training.
-- **Industry-Standard Evaluation Metric Suites**: Task-aligned quantitative scoring with embedded plain-text definitions to reduce interpretive friction for non-specialist users.
-- **Contextualised Diagnostic Visualisations**: Labelled, publication-ready plots for residual and classification error analysis, dynamically titled with active target feature metadata.
-- **Dataset Partition Metadata Dashboard**: Real-time display of total record count, training sample volume, test sample volume, and proportional split percentages for audit transparency.
-
-### 🔎 Model Explainability & Algorithmic Governance
-- **Multi-Source Feature Importance Ranking**: Hybrid importance calculation combining mutual information statistical scoring and Random Forest feature weight attribution, aggregated and grouped by original input column identifiers for intuitive interpretability.
-- **Pre-Execution Data Consistency Guardrails**: Contextual warning notifications alert users to configuration mismatches (e.g., continuous target variable assigned to classification task) to prevent invalid model training workflows.
-- **Human-Centric Metric Labelling**: Every quantitative metric includes plain-language guidance (e.g., "MSE: Lower numerical values indicate superior predictive performance") to standardise result interpretation across skill levels.
-
-### 🎨 Production-Grade User Experience & Interface Design
-- **Mobile-First Responsive Web UI**: Compact, modular component layout optimised for desktop, laptop, and tablet viewing resolutions.
-- **Automated Viewport Scrolling Logic**: Post-computation auto-scroll functionality navigates the UI to newly generated statistical or training result panels to minimise manual user navigation overhead.
-- **Modular Training Control Card**: Dedicated, isolated UI component housing training configuration parameters and a single-click execution trigger for streamlined model training initiation.
-
----
-## 🛠 Full Technology Stack
-| Architectural Layer | Production Technology Suite |
-| :--- | :--- |
-| Application Backend API | Python 3.10+, FastAPI 0.115+, Uvicorn ASGI Production Server |
-| Data Processing & Machine Learning Core | Pandas, NumPy, Scikit-learn v1.5+ |
-| Static Visualisation Rendering | Matplotlib (server-side plot generation, base64 payload delivery to frontend) |
-| Client-Side Frontend Interface | HTML5 Semantic Markup, CSS3 Custom Properties, Vanilla ES6+ JavaScript (zero external frontend framework dependencies) |
-| Deployment Targets | Static frontend asset hosting via GitHub Pages; backend restricted to local workstation execution only |
-
----
-# 🚀 Installation & Environment Provisioning
-This section formalises a reproducible, step-by-step environment setup workflow for Windows, macOS, and Linux operating systems, including pre-flight validation, repository acquisition, dependency provisioning, and backend service initialisation. All commands follow cross-platform best practices with platform-specific callouts where applicable.
-
-## 1. Pre-Flight Prerequisite Validation
-Complete the below environment audit before repository deployment to eliminate runtime dependency failures. All listed tooling is mandatory for full platform functionality.
-
-| Prerequisite Component | Formal Description | Validation Command | Criticality Rationale |
-| :--- | :--- | :--- | :--- |
-| Python 3.10 or Newer Interpreter | Core runtime environment powering the FastAPI backend, data parsing, and machine learning computation layers. | Terminal / Command Prompt:<br>`python --version`<br>macOS/Linux fallback: `python3 --version` | The backend and ML core are natively implemented in Python; incompatible minor/major versions introduce breaking API and library compatibility errors. |
-| Python Package Installer (pip) | Official Python package management utility bundled with standard Python 3.10+ distributions, used to resolve and install all third-party dependency libraries. | Terminal / Command Prompt:<br>`pip --version`<br>macOS/Linux fallback: `pip3 --version` | Required to provision the complete ML and API dependency stack; no alternative package managers are officially supported for this project. |
-| Standards-Compliant Modern Web Browser | Rendering engine for the static frontend web interface; supports ES6+ JavaScript, modern CSS, and base64 image payload ingestion for visualisation rendering. | N/A (Manual version check via browser "About" menu) | Legacy browsers lack required JavaScript and DOM APIs to execute the full frontend interactive workflow. Recommended releases: Google Chrome, Microsoft Edge, Mozilla Firefox, Apple Safari (latest stable channel builds). |
-| Git Version Control System (Optional) | Distributed source control client to clone the remote GitHub repository source code. | Terminal / Command Prompt:<br>`git --version` | Only required for repository cloning workflows. If Git is unavailable, users may download the project source as a compressed ZIP archive directly from the repository GitHub page. |
-
-## 2. Repository Source Code Acquisition
-Two officially supported deployment pathways are provided for source code retrieval; the Git clone method is recommended for future project update compatibility.
-
-### Option A: Git Repository Clone (Recommended)
-1. Launch your native system terminal (Terminal on macOS/Linux, PowerShell / Command Prompt on Windows).
-2. Navigate to a target working directory where the project source will be stored locally (example directory command provided below).
-3. Execute the repository clone command to pull the complete source tree from GitHub.
-4. Enter the project root directory post-clone completion.
-
-```bash
-# Navigate to your preferred project storage directory (example for cross-platform consistency)
-cd ~/Projects
-# Clone the public source repository
-git clone https://github.com/Rishad45-dot/automl-lite.git
-# Enter the project root working directory
 cd automl-lite
 ```
 
-### Option B: ZIP Archive Manual Download (Git-Free Workflow)
-1. Navigate to the project GitHub repository homepage in your web browser.
-2. Locate the **Code** dropdown button in the upper-right repository navigation panel.
-3. Select the **Download ZIP** option to initiate a compressed source archive download.
-4. Extract the full archive contents to a dedicated local working directory of your choice.
-5. Open your system terminal and change directory to the extracted project root folder prior to proceeding with dependency installation.
+**Option B: Download as ZIP**
 
-## 3. Isolated Python Virtual Environment Provisioning (Mandatory Best Practice)
-To prevent global Python package version conflicts and ensure fully reproducible dependency resolution across environments, a dedicated isolated virtual environment is required. Platform-specific activation syntax is documented below.
+Download the repository ZIP from GitHub and extract it to a local directory.
 
-### Step 3.1: Initialise Virtual Environment
-Execute this single command within the project root directory to generate a self-contained Python environment folder named `venv`:
+### 2. Install Backend Dependencies
+
 ```bash
-# Cross-platform virtual environment initialisation
-python -m venv venv
-# macOS / Linux fallback if python alias maps to Python 2
-python3 -m venv venv
+pip install fastapi uvicorn pandas numpy scikit-learn matplotlib python-multipart
 ```
 
-### Step 3.2: Activate the Isolated Virtual Environment
-Run the platform-specific activation command matching your operating system; successful activation will prefix your terminal prompt with `(venv)` to confirm isolation.
+### 3. Start the Backend Server
+
 ```bash
-# Windows (Command Prompt / CMD.exe)
-venv\Scripts\activate.bat
-
-# Windows (PowerShell)
-.\venv\Scripts\Activate.ps1
-
-# macOS / Linux (Bash / Zsh Terminal)
-source venv/bin/activate
+python -m uvicorn main:app --reload
 ```
 
-> **Critical PowerShell Note for Windows Users**: If script execution policies block virtual environment activation, execute this administrative PowerShell command once to permit local script execution:
-> ```powershell
-> Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
-> ```
-> Select `Y` to confirm policy modification when prompted.
+The API will be available at `http://127.0.0.1:8000`. Verify with:
 
-## 4. Third-Party Dependency Installation
-With the virtual environment active, install the complete pinned dependency stack via the project’s `requirements.txt` manifest file to lock consistent library versions.
 ```bash
-# Standard dependency install command (all platforms)
-pip install -r requirements.txt
-# macOS / Linux fallback alias
-pip3 install -r requirements.txt
+curl http://127.0.0.1:8000/
+# {"message": "Backend is running"}
 ```
 
-### Post-Install Validation Check
-Verify successful dependency provisioning by executing the following import test command; no module import errors confirm a complete environment setup:
-```bash
-python -c "import fastapi, uvicorn, pandas, numpy, sklearn, matplotlib; print('All core dependencies installed successfully')"
-```
+### 4. Open the Frontend
 
-## 5. Backend API Service Initialisation
-Launch the FastAPI ASGI backend server using Uvicorn within the active virtual environment. Two execution modes are provided for development and standard runtime use cases.
-
-### Standard Production-Like Runtime Mode
-Suitable for end-user model training workflows; disables auto-reload to optimise compute performance:
-```bash
-uvicorn main:app --host 127.0.0.1 --port 8000
-```
-
-### Development Debug Mode (For Code Modification Only)
-Enables live server auto-reload on source file edits; intended exclusively for platform development and customisation:
-```bash
-uvicorn main:app --host 127.0.0.1 --port 8000 --reload
-```
-
-### Post-Startup Validation
-Upon successful backend initialisation, the terminal will output confirmation logging with the local service endpoint address:
-`http://127.0.0.1:8000`
-- Access interactive API documentation via auto-generated Swagger UI: `http://127.0.0.1:8000/docs`
-- The static frontend GitHub Pages deployment will communicate with this local backend endpoint for all dataset and modelling operations.
-
-## 6. Post-Runtime Environment Deactivation
-When all modelling workflows are complete and you wish to exit the isolated virtual environment, run the single deactivation command in the terminal:
-```bash
-deactivate
-```
-
-## Troubleshooting Common Installation Failures
-1. **Python Version Mismatch Errors**: Download and install Python 3.10+ from the official Python Software Foundation website; ensure the new interpreter is added to your system PATH environment variable.
-2. **pip Command Not Found**: Re-run the Python installer and enable the "Add Python to PATH" checkbox during installation, or use the Python interpreter module syntax `python -m pip install [package]`.
-3. **Matplotlib Render Backend Errors (Linux/macOS)**: Install system-level graphical rendering dependencies via native package managers (apt, brew) to resolve missing GUI backend libraries.
-4. **Port 8000 Already In Use**: Modify the Uvicorn launch command to utilise an alternative port number (example `--port 8001`).
+Open the demo URL in your browser — or open `index.html` locally. The frontend points at the local backend automatically via the CORS-enabled API.
 
 ---
-## End-to-End User Workflow Guide
-1. Start the FastAPI backend server following the installation steps above.
-2. Navigate to the live GitHub Pages frontend URL in a modern web browser.
-3. Upload a valid CSV file via drag-and-drop or file selection button.
-4. Review auto-generated data preview and descriptive statistics for data quality checks.
-5. Adjust header toggle, target column, and supervised task type as needed.
-6. Select your preferred ML algorithm from the filtered model list.
-7. Click the training button to initiate model fitting on the 80/20 train-test split.
-8. Review evaluation metrics, diagnostic visualisations, and feature importance rankings.
-9. Repeat with alternative models to compare predictive performance.
 
-## Standardized Project Directory Structure
+## Usage Guide
+
+1. **Upload** — drag a `.csv` file onto the upload zone. A preview of the first five rows appears along with the detected header setting, detected task, and suggested target column.
+2. **Configure** — review the auto-detected settings; override the header flag, target column, or task type as needed.
+3. **Explore** — click **Get Statistics** to view the target column's descriptive statistics.
+4. **Train** — select a task-compatible model and click **Train**. The platform runs the 80/20 split, fits the model, and renders metrics, split info, warnings, and the evaluation plot.
+5. **Explain** — click **Feature Importance** to see which input columns drive predictions, with per-feature MI and RF scores and drop/keep recommendations.
+
+> **Tip:** For classification tasks, ensure the target column is categorical (string, boolean, or numeric with ≤10 unique values). For regression, the target should be a genuinely continuous numeric column. If the platform suggests switching tasks, it is usually worth listening.
+
+---
+
+## Project Structure
+
 ```
 automl-lite/
-├── main.py                 # FastAPI backend application entrypoint
-├── requirements.txt       # Pinned Python dependency manifest
-├── static/                 # Frontend static assets
-│   ├── index.html
-│   ├── style.css
-│   └── script.js
-├── assets/                 # Generated plots, local dataset cache
-├── LICENSE                 # MIT open-source license file
-└── README.md               # Project documentation
+├── index.html            # Frontend SPA (served via GitHub Pages)
+├── style.css             # Styling
+├── script.js             # Frontend logic (fetch API, DOM rendering)
+├── main.py               # FastAPI backend (ML pipeline, API endpoints)
+├── requirements.txt      # Python dependencies
+└── README.md             # This document
 ```
 
-## Responsible AI Governance Framework
-This platform embeds four core Responsible AI pillars into its end-to-end workflow:
-1. **Privacy-by-Design**: All data processing remains local; zero external data transmission.
-2. **Algorithmic Transparency**: Full visibility over train-test split logic, model hyperparameters, and scoring formula definitions.
-3. **Model Explainability**: Feature importance visualisations to quantify predictor impact on target outputs.
-4. **Human-In-The-Loop Oversight**: Manual overrides for auto-detected schema, task type, and guardrail warnings for invalid modelling configurations.
+---
 
-## System Limitations & Product Roadmap
-### Current Platform Limitations
-- Restricted to tabular CSV structured data only; unstructured text/image inputs unsupported.
-- Baseline classical ML estimators exclusively; deep learning neural network integration not implemented.
-- No persistent model serialisation/export functionality for offline inference deployment.
-- Limited hyperparameter tuning controls; fixed default estimator configurations.
-- No native handling of missing value imputation or advanced categorical encoding.
+## Responsible AI Alignment
 
-### Future Development Roadmap
-1. Hyperparameter grid/random search optimisation module
-2. Trained model weight export (`.pkl`) and offline inference endpoint
-3. Automated missing value imputation and categorical encoding pipelines
-4. Extended interpretability tooling (SHAP value visualisations)
-5. Lightweight dark mode UI theme toggle
-6. Support for larger dataset chunked streaming processing
-7. Export full training report as PDF/CSV
+| Dimension | Practice |
+| :--- | :--- |
+| **Privacy** | Local-only execution; no network egress beyond the local loopback; no logging of dataset contents. |
+| **Transparency** | All auto-inferences (header, task, target) are surfaced and overridable; training warnings are surfaced verbatim. |
+| **Explainability** | Hybrid MI + Random Forest feature importance, aggregated to original column names with plain-language recommendations. |
+| **Human Oversight** | Manual overrides at header, target, and task level; model selection is always user-initiated. |
+| **Reproducibility** | Fixed `random_state=42` across splits and stochastic estimators. |
 
-## Project Deliverable Inventory
-All artefacts included within the repository source tree:
-- FastAPI backend source (`main.py`)
-- Static frontend HTML/CSS/JS assets
-- Dependency manifest (`requirements.txt`)
-- Complete project documentation (`README.md`)
-- MIT open-source `LICENSE` file
-- Local asset directories for plots and temporary data storage
+---
 
-## Software License
-This open-source project is distributed under the MIT License — permissive commercial and non-commercial use permitted with standard copyright attribution requirements. Full license text available within the root-level `LICENSE` file of the repository.
+## Limitations & Future Work
 
-## Attributions & Acknowledgements
-Recognition for the maintainers and contributors of all open-source libraries powering AutoML-Lite:
-- FastAPI & Uvicorn for high-performance local API hosting
-- Pandas & NumPy for tabular data manipulation
-- Scikit-learn for classical supervised machine learning pipelines
-- Matplotlib for model diagnostic visualisation
-- Web standards communities for HTML/CSS/ES6 frontend tooling
-```
+**Current limitations:**
 
-=======
-cd automl-lite
->>>>>>> 6a6eda38ee27f5238359f10a9d522343c46476ad
+- The backend holds uploaded datasets in memory (per-session cache), which bounds dataset size by available RAM.
+- Preprocessing is limited to one-hot encoding; no scaling, imputation strategy selection, or polynomial feature generation is exposed.
+- Target column defaults to the last column, mirroring the legacy dataset format; manual selection mitigates this.
+- Hyperparameters are fixed at scikit-learn defaults; no grid search or cross-validation is offered.
+
+**Planned extensions:**
+
+- Sparse-matrix support for high-cardinality categorical features.
+- K-fold cross-validation with aggregated metrics.
+- Model persistence and prediction endpoints for new data.
+- Additional estimators (gradient boosting, k-NN) and class-imbalance handling (SMOTE, class weights).
+
+---
+
+## Deliverables
+
+| Deliverable | Description |
+| :--- | :--- |
+| `index.html`, `style.css`, `script.js` | Zero-dependency frontend SPA |
+| `main.py` | FastAPI backend implementing the full ML pipeline |
+| Live demo | Frontend hosted on GitHub Pages; backend self-hosted |
+
+---
+
+## License
+
+This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
+
+---
+
+## Acknowledgements
+
+- [Scikit-learn](https://scikit-learn.org/) — machine learning estimators and metrics
+- [FastAPI](https://fastapi.tiangolo.com/) — high-performance async API framework
+- [Pandas](https://pandas.pydata.org/) / [NumPy](https://numpy.org/) — data manipulation
+- [Matplotlib](https://matplotlib.org/) — evaluation visualizations
+- [GitHub Pages](https://pages.github.com/) — static frontend hosting
