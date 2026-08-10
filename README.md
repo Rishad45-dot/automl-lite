@@ -133,11 +133,23 @@ Built with **Responsible AI** principles: **Privacy by Design**, **Transparency*
 ## 🚀 Installation & Setup
 
 ### Prerequisites
-- Python 3.10+ installed.
-- A modern web browser (Chrome, Edge, Firefox, Safari).
-- `pip` (Python package manager).
 
-### 1. Clone the Repository
+Before you begin, ensure you have the following installed on your machine:
+
+| Requirement | Description | How to Check | Why You Need It |
+| :--- | :--- | :--- | :--- |
+| **Python 3.10+** | The programming language used for the backend. | Run `python --version` or `python3 --version` in your terminal. | The backend is written in Python. Without it, nothing works. |
+| **pip** | Python package manager (comes with Python). | Run `pip --version` in your terminal. | Used to install all the required Python packages. |
+| **Modern Web Browser** | Chrome, Edge, Firefox, or Safari (latest version recommended). | – | To open and interact with the frontend interface. |
+| **Git** (optional) | Version control system to clone the repository. | Run `git --version` in your terminal. | Required only if you want to clone the repository. You can also download the ZIP file. |
+
+---
+
+### 1. Clone or Download the Repository
+
+**Option A: Clone with Git (Recommended)**
+
+Open your terminal and run:
 
 ```bash
 git clone https://github.com/Rishad45-dot/automl-lite.git
