@@ -5,7 +5,7 @@
 **Frontend (GitHub Pages):**  
 🔗 [https://Rishad45-dot.github.io/automl-lite/](https://Rishad45-dot.github.io/automl-lite/)
 
-**Backend:** Runs locally – see installation instructions below.
+**Backend:** Runs locally – see [Installation & Setup](#installation--setup) for detailed instructions.
 
 ---
 
@@ -38,14 +38,14 @@
 
 ## 📖 Overview
 
-**AutoML-Lite** is a **locally-runnable, privacy-first** machine learning web application that allows users to:
+**AutoML-Lite** is a **locally-runnable, privacy-first** machine learning web application that enables users to:
 
 - Upload CSV datasets **without sending data to the cloud**.
 - Automatically detect headers, column types, and task types.
-- Train and evaluate machine learning models with a clean, intuitive interface.
+- Train and evaluate machine learning models through a clean, intuitive interface.
 - Generate descriptive statistics, evaluation metrics, and visualizations.
 
-Built with **Responsible AI** principles: **Privacy by Design**, **Transparency**, **Explainability**, and **Human Oversight**.
+Built with **Responsible AI** principles: **Privacy by Design**, **Transparency**, **Explainability**, and **Human Oversight** in mind.
 
 ---
 
@@ -132,20 +132,20 @@ Built with **Responsible AI** principles: **Privacy by Design**, **Transparency*
 
 ## 🚀 Installation & Setup
 
+This guide provides step-by-step instructions to get AutoML-Lite running on your local machine.
+
 ### Prerequisites
 
-Before you begin, ensure you have the following installed on your machine:
+Ensure your system meets the following requirements before proceeding.
 
-| Requirement | Description | How to Check | Why You Need It |
+| Requirement | Description | How to Verify | Why It's Needed |
 | :--- | :--- | :--- | :--- |
-| **Python 3.10+** | The programming language used for the backend. | Run `python --version` or `python3 --version` in your terminal. | The backend is written in Python. Without it, nothing works. |
-| **pip** | Python package manager (comes with Python). | Run `pip --version` in your terminal. | Used to install all the required Python packages. |
-| **Modern Web Browser** | Chrome, Edge, Firefox, or Safari (latest version recommended). | – | To open and interact with the frontend interface. |
-| **Git** (optional) | Version control system to clone the repository. | Run `git --version` in your terminal. | Required only if you want to clone the repository. You can also download the ZIP file. |
+| **Python 3.10 or Higher** | The backend is built with Python. | Run `python --version` or `python3 --version` in your terminal. | The core server and ML logic depend on Python. |
+| **pip** | The Python package installer. | Run `pip --version` or `pip3 --version`. | Essential for installing project dependencies. |
+| **Modern Web Browser** | Chrome, Edge, Firefox, or Safari (latest version). | N/A | To access and interact with the web interface. |
+| **Git (Optional)** | For cloning the repository. | Run `git --version`. | Required if you choose to clone the project via Git. You can also download the ZIP file directly. |
 
----
-
-### 1. Clone or Download the Repository
+### Step 1: Obtain the Source Code
 
 **Option A: Clone with Git (Recommended)**
 
