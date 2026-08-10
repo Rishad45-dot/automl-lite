@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ML Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Machine Learning Workflow</p>
+          <h1>Upload, configure, and evaluate your dataset</h1>
+        </div>
+      </header>
+
+      <main class="dashboard-grid">
+        <!-- UPLOAD CARD – Compact -->
+        <section class="card upload-card">
+          <div class="card-header">
+            <h2>Upload Dataset</h2>
+            <p>Load a CSV file to begin</p>
+          </div>
+          <label class="drop-zone" for="csvFile">
+            <input id="csvFile" type="file" accept=".csv" />
+            <span class="drop-zone-text">📂 Click or drag a CSV file</span>
+          </label>
+          <button id="uploadBtn" class="primary-btn">Upload</button>
+          <div id="uploadStatus" class="status-box">No file selected.</div>
+        </section>
+
+        <!-- CONFIGURATION CARD -->
+        <section class="card config-card">
+          <div class="card-header">
+            <h2>Configuration</h2>
+            <p>Choose target, task, and model</p>
+          </div>
+
+          <label class="field">
+            <span>Target Column</span>
+            <select id="targetColumn"></select>
+          </label>
+
+          <label class="field">
+            <span>Header in CSV</span>
+            <select id="hasHeader">
+              <option value="true">Yes</option>
+              <option value="false">No</option>
+            </select>
+          </label>
+
+          <div class="field">
+            <span>Task Type</span>
+            <div class="toggle-group" role="radiogroup" aria-label="Task type">
+              <label><input type="radio" name="taskType" value="classification" checked /> Classification</label>
+              <label><input type="radio" name="taskType" value="regression" /> Regression</label>
+            </div>
+          </div>
+
+          <label class="field">
+            <span>Model</span>
+            <select id="modelSelect"></select>
+          </label>
+
+          <button id="trainBtn" class="primary-btn">Train Model</button>
+          <button id="statsBtn" class="secondary-btn">Show Statistics</button>
+        </section>
+
+        <!-- RESULTS CARD -->
+        <section class="card results-card">
+          <div class="card-header">
+            <h2>Results</h2>
+            <p>Preview, statistics, metrics, and plot</p>
+          </div>
+
+          <!-- Data Preview and Statistics (stacked) -->
+          <div class="results-grid" id="resultsGrid">
+            <div class="preview-col">
+              <h3>Data Preview</h3>
+              <div class="table-wrap">
+                <table id="previewTable">
+                  <thead></thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="stats-col">
+              <h3>Statistics</h3>
+              <div class="table-wrap">
+                <table id="statsTable">
+                  <thead></thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- NEW TRAINING CARD (between Statistics and Metrics) -->
+          <div class="training-card">
+            <div id="trainingDescription" class="training-description">
+              Upload a dataset to see a training goal description.
+            </div>
+            <div class="training-controls">
+              <div class="field">
+                <span>Task Type</span>
+                <div class="toggle-group" role="radiogroup" aria-label="Task type (new)">
+                  <label><input type="radio" name="taskType" value="classification" checked /> Classification</label>
+                  <label><input type="radio" name="taskType" value="regression" /> Regression</label>
+                </div>
+              </div>
+              <label class="field">
+                <span>Model</span>
+                <select id="modelSelectNew"></select>
+              </label>
+              <button id="trainBtnNew" class="primary-btn">🚀 Train Model</button>
+            </div>
+          </div>
+
+          <div class="metrics-panel">
+            <h3>Metrics</h3>
+            <div id="metricsOutput" class="metrics-output">No results yet.</div>
+          </div>
+
+          <div class="plot-panel">
+            <h3>Model Plot</h3>
+            <div id="plotContainer" class="plot-container">No plot available yet.</div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
